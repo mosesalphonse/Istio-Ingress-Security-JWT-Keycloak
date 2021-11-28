@@ -50,3 +50,53 @@ example : http://{keycloak_svc_ip}:8080
 ![image](https://user-images.githubusercontent.com/16347988/143782280-2f705781-fbbe-468e-b834-d9f1389a2857.png)
 
 Note: Use this JWKS (public key) and access token when we doing the testing
+
+## Build & Deploy workload (quarkus-demo)
+
+1) Update Properties value (/workload/src/main/resources/application.properties)
+
+```
+quarkus.container-image.name={name of the image} 
+quarkus.container-image.tag={version tag}
+quarkus.kubernetes.service-type=ClusterIP
+
+#for Google registry(GCR)
+quarkus.container-image.registry=gcr.io
+quarkus.container-image.group={your google project id}
+
+#for Docker hub (Dockerhub is the default registry)
+#quarkus.container-image.group={your docker hub username}
+```
+
+2) Build and push the image
+
+```
+cd workload
+
+mvn clean package -Dquarkus.container-image.push=true
+
+cd ..
+
+```
+Note : after successfull build, image should be found in the container registry
+
+3) Deploy Service account, workload, service
+
+```
+kubectl apply -f yamls/service-account.yaml
+
+kubectl apply -f yamls/deploy-quarkus-demo-v1.yaml
+
+kubectl apply -f yamls/quarkus-demo-svc.yaml
+
+```
+4) Istio Configuration (Gateway, Virtual service and Destination Rule)
+
+```
+kubectl apply -f yamls/quarkus-demo-svc-gateway.yaml
+
+kubectl apply -f yamls/quarkus-demo-svc-Virtual-service-v1.yaml
+
+kubectl apply -f yamls/quarkus-demo-svc-Destination-Rule-v1.yaml
+
+```
