@@ -1,0 +1,16 @@
+kind: Gateway
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: quarkus-demo-svc-gateway
+  namespace: default
+
+spec:
+  servers:
+    - port:
+        number: 80
+        protocol: HTTP
+        name: http
+      hosts:
+        - '*'
+  selector:
+    istio: ingressgateway

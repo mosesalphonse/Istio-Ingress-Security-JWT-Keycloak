@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quarkus-demo-svc
+  labels:
+    app: quarkus-demo
+    service: quarkus-demo
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: quarkus-demo
+---

@@ -1,0 +1,17 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: quarkus-demo-svc
+  namespace: default
+
+spec:
+  hosts:
+    - '*'
+  gateways:
+    - default/quarkus-demo-svc-gateway
+  http:
+    - route:
+        - destination:
+            host: quarkus-demo-svc.default.svc.cluster.local
+            subset: v1
+          weight: 100
