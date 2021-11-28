@@ -42,7 +42,8 @@ example : http://{keycloak_svc_ip}:8080
 
 ![image](https://user-images.githubusercontent.com/16347988/143782092-2fb56836-e119-403e-9ed7-47b348cfe93a.png)
 
-![image](https://user-images.githubusercontent.com/16347988/143782117-bb4c0d9d-fb66-4694-adc5-ed7b61068db1.png)
+![image](https://user-images.githubusercontent.com/16347988/143782421-5965f464-40f3-4285-b5ac-35c0b39ff89e.png)
+
 
 5) Get Access Token
 
