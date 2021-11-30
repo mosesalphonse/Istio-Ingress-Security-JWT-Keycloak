@@ -18,7 +18,7 @@ public class GreetingResourceTest {
                 .when().get("/hello")
                 .then()
                 .statusCode(200)
-                .body(is("hello v2"));
+                .body(is("hello v3"));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class GreetingResourceTest {
                 .when().get("/hello/greeting/{name}")
                 .then()
                 .statusCode(200)
-                .body(is("hello v2 " + uuid));
+                .body(is("hello v3 " + uuid));
     }
 
 }
