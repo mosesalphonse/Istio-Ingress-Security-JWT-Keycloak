@@ -116,6 +116,23 @@ kubectl apply -f yamls/quarkus-jwt.yaml
 kubectl apply -f yamls/quarkus-jwt-virtualservice.yaml
 
 ```
+## Verify
+
+1) Get access token 
+
+```
+http://{keycloak_external_ip}:8080/auth/realms/master/protocol/openid-connect/token
+
+```
+![image](https://user-images.githubusercontent.com/16347988/144073005-8d9fb189-b18d-4812-8083-94e9ecd920fd.png)
+
+2) Access Istio Ingress with JWT as Authorization Bearer request header
+
+```
+http://{keycloak_external_ip}/hello
+http://{keycloak_external_ip}/hello/greeting/Quarkus
+
+```
 
 ## Cleanup
 
