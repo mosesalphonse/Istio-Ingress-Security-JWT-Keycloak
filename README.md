@@ -95,6 +95,8 @@ kubectl apply -f yamls/service-account.yaml
 
 kubectl apply -f yamls/deploy-quarkus-demo-v1.yaml
 
+kubectl apply -f yamls/deploy-quarkus-demo-v2.yaml
+
 kubectl apply -f yamls/quarkus-demo-svc.yaml
 
 ```
