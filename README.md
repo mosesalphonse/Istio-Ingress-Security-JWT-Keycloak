@@ -4,7 +4,7 @@ This repo shows how to route requests based on JWT claims with authentication an
 
 ## POC:
 <li>
-Deploy Keycloak and configure service account
+Deploy Keycloak and configure service account client
 </li>
 <li>
 Secure Istio Ingress gateway Keycloak's JWT
