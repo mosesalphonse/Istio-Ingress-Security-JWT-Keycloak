@@ -116,3 +116,18 @@ kubectl apply -f yamls/quarkus-jwt.yaml
 kubectl apply -f yamls/quarkus-jwt-virtualservice.yaml
 
 ```
+
+## Cleanup
+
+```
+kubectl delete -f yamls/quarkus-jwt-virtualservice.yaml
+kubectl delete -f yamls/quarkus-jwt.yaml
+kubectl delete -f yamls/quarkus-no-security-virtualservice.yaml
+kubectl delete -f yamls/quarkus-gateway.yaml
+kubectl delete -f yamls/quarkus-demo-svc.yaml
+kubectl delete -f yamls/deploy-quarkus-demo-v2.yaml
+kubectl delete -f yamls/deploy-quarkus-demo-v1.yaml
+kubectl delete -f yamls/service-account.yaml
+kubectl delete -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml
+
+```
