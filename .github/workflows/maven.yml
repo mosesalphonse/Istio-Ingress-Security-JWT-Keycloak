@@ -22,5 +22,11 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven
+    - uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        service_account_key: ${{ secrets.GKE_SA_KEY }}
+        project_id: ${{ secrets.GKE_PROJECT }}
+    - run: |-
+        gcloud --quiet auth configure-docker
     - name: Build with Maven
       run: mvn -B clean package -Dquarkus.container-image.push=true --file workload/pom.xml
