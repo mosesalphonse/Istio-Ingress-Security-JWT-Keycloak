@@ -97,6 +97,8 @@ kubectl apply -f yamls/deploy-quarkus-demo-v1.yaml
 
 kubectl apply -f yamls/deploy-quarkus-demo-v2.yaml
 
+kubectl apply -f yamls/deploy-quarkus-demo-v3.yaml
+
 kubectl apply -f yamls/quarkus-demo-svc.yaml
 
 ```
@@ -127,6 +129,7 @@ kubectl delete -f yamls/quarkus-jwt.yaml
 kubectl delete -f yamls/quarkus-no-security-virtualservice.yaml
 kubectl delete -f yamls/quarkus-gateway.yaml
 kubectl delete -f yamls/quarkus-demo-svc.yaml
+kubectl delete -f yamls/deploy-quarkus-demo-v3.yaml
 kubectl delete -f yamls/deploy-quarkus-demo-v2.yaml
 kubectl delete -f yamls/deploy-quarkus-demo-v1.yaml
 kubectl delete -f yamls/service-account.yaml
