@@ -105,6 +105,13 @@ kubectl apply -f yamls/quarkus-gateway.yaml
 kubectl apply -f yamls/quarkus-no-security-virtualservice.yaml
 
 ```
+### verify (without JWT):
+```
+http://{istio-ingress_ip}/hello
+http://{istio-ingress_ip}/hello/greeting/Quarkus
+
+```
+
 5) Istio Configuration with JWT (If the claim doesn't have 'sash' role, it will reject)
 
 ![image](https://user-images.githubusercontent.com/16347988/144046403-a8ef0b4f-78ef-4d87-831c-356d2f5ad202.png)
