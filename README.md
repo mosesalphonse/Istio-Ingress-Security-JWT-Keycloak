@@ -129,8 +129,8 @@ http://{keycloak_external_ip}:8080/auth/realms/master/protocol/openid-connect/to
 2) Access Istio Ingress with JWT as Authorization Bearer request header
 
 ```
-http://{keycloak_external_ip}/hello
-http://{keycloak_external_ip}/hello/greeting/Quarkus
+http://{istio-ingress_ip}/hello
+http://{istio-ingress_ip}/hello/greeting/Quarkus
 
 ```
 
