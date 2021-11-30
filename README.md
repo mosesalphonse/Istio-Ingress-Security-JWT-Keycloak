@@ -45,12 +45,19 @@ example : http://{keycloak_svc_ip}:8080
 
 ![image](https://user-images.githubusercontent.com/16347988/143782421-5965f464-40f3-4285-b5ac-35c0b39ff89e.png)
 
+5) Assign the appropriate role
 
-5) Get Access Token
+**Note**: My yaml(refer /yamls/quarkus-jwt-virtualservice.yaml) defines 'sash' as role required to access quarkus-demo workload.
+
+![image](https://user-images.githubusercontent.com/16347988/144045472-58511486-ac98-440a-b4dd-f0390d8df413.png)
+
+
+6) Get Access Token
 
 ![image](https://user-images.githubusercontent.com/16347988/143782280-2f705781-fbbe-468e-b834-d9f1389a2857.png)
 
 Note: Use this JWKS (public key) and access token when we doing the testing
+
 
 ## Build & Deploy workload (quarkus-demo)
 
@@ -91,13 +98,21 @@ kubectl apply -f yamls/deploy-quarkus-demo-v1.yaml
 kubectl apply -f yamls/quarkus-demo-svc.yaml
 
 ```
-4) Istio Configuration (Gateway, Virtual service and Destination Rule)
+4) Istio Configuration without JWT
 
 ```
-kubectl apply -f yamls/quarkus-demo-svc-gateway.yaml
+kubectl apply -f yamls/quarkus-gateway.yaml
+kubectl apply -f yamls/quarkus-no-security-virtualservice.yaml
 
-kubectl apply -f yamls/quarkus-demo-svc-Virtual-service-v1.yaml
+```
+5) Istio Configuration with JWT (If the claim doesn't have 'sash' role, it will reject)
 
-kubectl apply -f yamls/quarkus-demo-svc-Destination-Rule-v1.yaml
+![image](https://user-images.githubusercontent.com/16347988/144046403-a8ef0b4f-78ef-4d87-831c-356d2f5ad202.png)
+
+
+```
+kubectl delete -f yamls/quarkus-no-security-virtualservice.yaml
+kubectl apply -f yamls/quarkus-jwt.yaml
+kubectl apply -f yamls/quarkus-jwt-virtualservice.yaml
 
 ```
