@@ -32,7 +32,9 @@ Kiali
 2) Login into keycloak with default password admin/admin (Keycloak service exposed as Load Balancer)
 
 ```
-example : http://{keycloak_svc_ip}:8080
+
+http://${KEYCLOAK_IP}:8080
+
 ```
 
 3) Create service account client (backend-service) as shown in the below screenshot
@@ -107,8 +109,8 @@ kubectl apply -f yamls/quarkus-no-security-virtualservice.yaml
 ```
 ### verify (without JWT):
 ```
-http://{istio-ingress_ip}/hello
-http://{istio-ingress_ip}/hello/greeting/Quarkus
+http://${ISTIO_INGRESS_IP}/hello
+http://${ISTIO_INGRESS_IP}/hello/greeting/Quarkus
 
 ```
 
@@ -128,7 +130,7 @@ kubectl apply -f yamls/quarkus-jwt-virtualservice.yaml
 1) Get access token 
 
 ```
-http://{keycloak_external_ip}:8080/auth/realms/master/protocol/openid-connect/token
+http://${KEYCLOAK_IP}:8080/auth/realms/master/protocol/openid-connect/token
 
 ```
 ![image](https://user-images.githubusercontent.com/16347988/144073005-8d9fb189-b18d-4812-8083-94e9ecd920fd.png)
@@ -136,8 +138,8 @@ http://{keycloak_external_ip}:8080/auth/realms/master/protocol/openid-connect/to
 2) Access Istio Ingress with JWT as Authorization Bearer request header
 
 ```
-http://{istio-ingress_ip}/hello
-http://{istio-ingress_ip}/hello/greeting/Quarkus
+http://${ISTIO_INGRESS_IP}/hello
+http://${ISTIO_INGRESS_IP}/hello/greeting/Quarkus
 
 ```
 
