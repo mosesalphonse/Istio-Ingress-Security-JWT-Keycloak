@@ -8,5 +8,5 @@ spec:
     matchLabels:
       istio: ingressgateway
   jwtRules:
-  - issuer: "http://34.136.202.94:8080/auth/realms/master"
-    jwksUri: "http://34.136.202.94:8080/auth/realms/master/protocol/openid-connect/certs"
+  - issuer: "http://104.154.151.4:8080/auth/realms/master"
+    jwksUri: "http://104.154.151.4:8080/auth/realms/master/protocol/openid-connect/certs"
