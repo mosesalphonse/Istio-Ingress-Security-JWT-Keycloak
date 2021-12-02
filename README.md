@@ -19,7 +19,7 @@ Kubernetes Cluster (tested on v1.21.5-gke.1302)
 Istio Instalation (tested on istio-1.12.0)
 </li>
 <li>
-Kiali
+Kiali Dashboard
 </li>
 
 ## Deploy and configure Keycloak
