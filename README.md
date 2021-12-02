@@ -61,36 +61,12 @@ http://${KEYCLOAK_IP}:8080
 Note: Use this JWKS (public key) and access token when we doing the testing
 
 
-## Build & Deploy workload (quarkus-demo)
+## Deploy existing(images are already in repo) workloads
 
-1) Update Properties value (/workload/src/main/resources/application.properties)
 
-```
-quarkus.container-image.name={name of the image} 
-quarkus.container-image.tag={version tag}
-quarkus.kubernetes.service-type=ClusterIP
+1) Deploy Service account, workload, service
 
-#for Google registry(GCR)
-quarkus.container-image.registry=gcr.io
-quarkus.container-image.group={your google project id}
-
-#for Docker hub (Dockerhub is the default registry)
-#quarkus.container-image.group={your docker hub username}
-```
-
-2) Build and push the image
-
-```
-cd workload
-
-mvn clean package -Dquarkus.container-image.push=true
-
-cd ..
-
-```
-Note : after successfull build, image should be found in the container registry
-
-3) Deploy Service account, workload, service
+**Note**: These v1,v2,v3 images are already available in repo.
 
 ```
 kubectl apply -f yamls/service-account.yaml
@@ -100,7 +76,7 @@ kubectl apply -f yamls/deploy-quarkus-demo-v3.yaml
 kubectl apply -f yamls/quarkus-demo-svc.yaml
 
 ```
-4) Istio Configuration without JWT
+2) Istio Configuration without JWT
 
 ```
 kubectl apply -f yamls/quarkus-gateway.yaml
@@ -113,11 +89,52 @@ http://${ISTIO_INGRESS_IP}/hello
 http://${ISTIO_INGRESS_IP}/hello/greeting/Quarkus
 
 ```
+## Build & Deploy new version
 
-5) Istio Configuration with JWT (If the claim doesn't have 'sash' role, it will reject)
+**Note** new verion will automatically detected based on the app label and distribute the load to the new version
+
+1) Update Properties value (/workload/src/main/resources/application.properties)
+
+```
+quarkus.container-image.name={name of the image} 
+quarkus.container-image.tag={version tag}
+quarkus.kubernetes.service-type=ClusterIP
+quarkus.kubernetes.labels.app={label for app} 
+quarkus.kubernetes.labels.version={label for version} 
+
+#for Google registry(GCR)
+quarkus.container-image.registry=gcr.io
+quarkus.container-image.group={your google project id}
+
+#for Docker hub (Dockerhub is the default registry)
+#quarkus.container-image.group={your docker hub username}
+```
+2) Build new version of the code and push the image through Maven
+
+```
+cd workload
+
+mvn clean package -Dquarkus.container-image.push=true
+
+cd ..
+
+```
+**Note** : after successfull build, image should be found in the container registry
+
+3) Deploy new version
+
+**Note**: kubernetes.yml file be created by maven based on the application.properties config otherwise with default values
+
+```
+kubectl apply -f workload/target/kubernetes/kubernetes.yml
+
+```
+
+## Istio Configuration with JWT 
+
+**Note**: If the claim doesn't have 'sash' role, it will reject
 
 ![image](https://user-images.githubusercontent.com/16347988/144046403-a8ef0b4f-78ef-4d87-831c-356d2f5ad202.png)
-
 
 ```
 kubectl delete -f yamls/quarkus-no-security-virtualservice.yaml
