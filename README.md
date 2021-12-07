@@ -1,6 +1,6 @@
 # Istio-Ingress-Security-JWT-Keycloak
 
-This is sample repo to shows how to route requests based on JWT claims with authentication and authorizations on an Istio ingress gateway using Keycloak
+This is sample repo to shows how to route requests based on JWT claims with authentication and authorizations on an Istio ingress gateway using Keycloak 
 
 ## POC:
 <li>
