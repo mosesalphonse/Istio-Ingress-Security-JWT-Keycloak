@@ -78,4 +78,14 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
-        kubectl get nodes
+        kubectl apply -f yamls/service-account.yaml
+        kubectl apply -f yamls/deploy-quarkus-demo-v1.yaml
+        kubectl apply -f yamls/deploy-quarkus-demo-v2.yaml
+        kubectl apply -f yamls/deploy-quarkus-demo-v3.yaml
+        kubectl apply -f yamls/quarkus-demo-svc.yaml
+        kubectl apply -f yamls/quarkus-gateway.yaml
+        kubectl apply -f yamls/quarkus-no-security-virtualservice.yaml
+
+        kubectl apply -f workload/target/kubernetes/kubernetes.yml
+
+
